@@ -37,4 +37,11 @@ artifacts/
 outputs/
 cache/
 uploads/
-
+*.img
+*.swp
+*.sym
+*.asm
+kernel
+bootblock
+mkfs
+_*
