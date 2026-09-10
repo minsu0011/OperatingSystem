@@ -1,5 +1,7 @@
-# Kernel extensions
-LWP branch: thread creation/join과 process lifecycle, 공유 주소공간의 자원 해제 순서를 함께 다뤄야 합니다. 기존 결과는 FAIL이며 미완성으로 남습니다.
-COW branch: fork의 물리 페이지 공유, write fault 시 복사, page reference accounting이 핵심입니다. 기존 PASS는 SOURCE_REPORTED입니다.
-각 branch Makefile 및 MIT LICENSE를 보존합니다. kernel boot/QEMU 검증을 이번에 실행하지 않았습니다. COW PASS를 LWP로 전파하거나 두 branch를 통합 성공한 것으로 서술하지 않습니다.
+# 스레드와 페이지의 수명
 
+LWP는 스레드 생성·join·종료가 공유 주소공간의 해제와 연결됩니다. 생성 함수만 추가해도 다른 스레드가 쓰는 메모리를 먼저 해제하면 올바른 구현이 아닙니다. 이 과제의 LWP는 당시 테스트를 통과하지 못한 미완성 구현입니다.
+
+COW는 fork에서 물리 페이지를 공유하고 쓰기 fault 때 복사합니다. 페이지 참조 수 증가·감소와 마지막 해제를 맞춰야 합니다. COW는 당시 과제 테스트 통과 기록이 있지만 LWP와 합친 커널의 결과는 아닙니다.
+
+두 디렉터리는 별도 Makefile과 MIT LICENSE를 가진 독립 과제입니다.
